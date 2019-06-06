@@ -1,0 +1,11 @@
+---
+- hosts: cache
+  remote_user: root
+  vars:
+    username: plj
+  tasks:
+    - name: create user "{{username}}"
+      user:
+        name: "{{username}}"
+        password: "{{'123'|password_hash('sha512')}}"
+    - shell: chage -d 0 "{{username}}"

@@ -1,0 +1,11 @@
+---
+- hosts: cache
+  remote_user: root
+  vars:
+    id: [1, 2, 3]
+    un: ['a', 'b', 'c']
+  tasks:
+    - shell: echo "{{item}}"
+      with_nested:
+        - "{{id}}"
+        - "{{un}}"

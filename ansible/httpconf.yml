@@ -1,0 +1,17 @@
+---
+- hosts: web
+  remote_user: root
+  tasks:
+    - copy:
+        src: httpd.conf
+        dest: /etc/httpd/conf/httpd.conf
+        owner: root
+        group: root
+        mode: 0644
+      tags: aabb
+      notify: reloadhttp
+  handlers:
+    - name: reloadhttp
+      service:
+        name: httpd
+        state: restarted
